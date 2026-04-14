@@ -1,0 +1,367 @@
+/* Agriculture Jobs Platform - Custom Styles */
+
+:root {
+    --primary-color: #28a745;
+    --secondary-color: #6c757d;
+    --dark-color: #343a40;
+    --light-color: #f8f9fa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* Navigation */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-brand i {
+    font-size: 1.8rem;
+}
+
+/* Hero Banner */
+.hero-banner {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    padding: 4rem 0;
+    margin-top: 60px;
+}
+
+.hero-banner h1 {
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero-banner .lead {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+/* Cards */
+.card {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+}
+
+.card-title {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5rem 0.75rem;
+    font-weight: 500;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+/* Forms */
+.form-control,
+.form-select {
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 6px;
+    border: 0;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Tables */
+.table {
+    background-color: white;
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    color: #333;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Job Cards */
+.job-card {
+    border-left: 4px solid #28a745;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: white;
+    margin-top: 5rem;
+}
+
+footer a {
+    color: #adb5bd;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #28a745;
+}
+
+footer hr {
+    border-top-color: #495057;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-banner h1 {
+        font-size: 2rem;
+    }
+
+    .hero-banner .lead {
+        font-size: 1rem;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Utility Classes */
+.text-success {
+    color: #28a745 !important;
+}
+
+.bg-success {
+    background-color: #28a745 !important;
+}
+
+.border-success {
+    border-color: #28a745 !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Special Styles */
+.sticky-top {
+    z-index: 1020;
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+    color: white;
+    font-weight: 600;
+}
+
+.pagination .page-link {
+    color: #28a745;
+}
+
+.pagination .page-link:hover {
+    color: white;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+/* Modal Styles */
+.modal-header {
+    background-color: #28a745;
+    color: white;
+    border-bottom: 0;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+/* List Group */
+.list-group-item.active {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    border-radius: 6px;
+    border: 0;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #f8f9fa;
+    color: #28a745;
+}
+
+/* Input Group */
+.input-group-text {
+    background-color: white;
+    border-color: #ddd;
+}
+
+.input-group-text i {
+    color: #28a745;
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #28a745;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+}
+
+.breadcrumb-item.active {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.breadcrumb-item a {
+    color: #28a745;
+    text-decoration: none;
+}
+
+/* Loader */
+.spinner-border {
+    color: #28a745;
+}
+
+/* Link Styles */
+a {
+    color: #28a745;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #218838;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #28a745;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #218838;
+}

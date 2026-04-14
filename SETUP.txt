@@ -1,0 +1,346 @@
+# INSTALLATION & SETUP GUIDE
+# Agriculture Hiring Website (AgriJobs)
+
+## STEP 1: ENVIRONMENT REQUIREMENTS
+- PHP 7.4 or higher
+- MySQL 5.7 or higher / MariaDB 10.3 or higher
+- Apache/Nginx web server with mod_rewrite enabled
+- 50MB disk space minimum
+- 512MB RAM minimum
+
+## STEP 2: FILES DOWNLOADED
+The following files have been created:
+
+ROOT DIRECTORY (agri/)
+├── index.php                 - Home page with featured jobs
+├── about.php                 - About page
+├── contact.php               - Contact form page
+├── jobs.php                  - Job listing with filters
+├── job_detail.php            - Individual job view
+├── login.php                 - User login
+├── register.php              - User registration
+├── logout.php                - Logout handler
+├── dashboard.php             - User dashboard (role-based)
+├── profile.php               - User profile page
+├── post_job.php              - Post new job (Farmers)
+├── apply_job.php             - Apply for job (Workers)
+├── edit_job.php              - Edit job listing
+├── delete_job.php            - Delete job handler
+├── view_application.php      - View application details
+├── update_application.php    - Update application status
+├── save_job.php              - Save/unsave job (AJAX)
+├── config.php                - Configuration file
+├── database.sql              - Database schema and sample data
+├── README.md                 - Full documentation
+
+INCLUDES (includes/)
+├── db_connection.php         - Database connection and configuration
+├── header.php                - Navigation and header template
+├── footer.php                - Footer template
+
+CSS (css/)
+├── style.css                 - Custom CSS styling
+
+JAVASCRIPT (js/)
+├── script.js                 - Form validation and interactions
+
+ADMIN PANEL (admin/)
+├── dashboard.php             - Admin statistics and overview
+├── manage_users.php          - Manage all users
+├── manage_jobs.php           - Manage all job postings
+├── manage_applications.php   - Manage applications
+├── manage_messages.php       - Manage contact messages
+
+UPLOADS (uploads/)
+└── [Empty] - For resume uploads
+
+## STEP 3: DATABASE SETUP
+
+### Method A: Using phpMyAdmin
+1. Open http://localhost/phpmyadmin/
+2. Click "New" to create database
+3. Database name: "agriculture_jobs"
+4. Collation: "utf8mb4_unicode_ci"
+5. Click Create
+6. Select the new database
+7. Click "Import" tab
+8. Choose database.sql file
+9. Click Import
+
+### Method B: Using MySQL Command Line
+```bash
+mysql -u root -p
+CREATE DATABASE agriculture_jobs;
+USE agriculture_jobs;
+SOURCE /path/to/database.sql;
+EXIT;
+```
+
+### Method C: Using PHpStorm or IDE
+1. Right-click on Databases
+2. New → Database
+3. Choose MySQL
+4. Enter connection details
+5. Create database "agriculture_jobs"
+6. Run SQL Script from database.sql file
+
+## STEP 4: UPDATE DATABASE CREDENTIALS
+Edit: includes/db_connection.php
+
+```php
+define('DB_HOST', 'localhost');      // Your host
+define('DB_USER', 'root');           // Your username
+define('DB_PASS', 'password');       // Your password (if any)
+define('DB_NAME', 'agriculture_jobs'); // Database name
+```
+
+## STEP 5: FILE PERMISSIONS
+Set upload directory permissions:
+
+### Linux/Mac:
+```bash
+chmod 755 uploads/
+```
+
+### Windows:
+- Right-click uploads folder → Properties
+- Security tab → Edit
+- Select "Users" → Check "Modify" → Apply
+
+## STEP 6: VERIFY INSTALLATION
+1. Open http://localhost/agri/
+2. You should see home page with featured jobs
+3. Try login with test credentials
+
+## STEP 7: TEST ACCOUNTS
+
+### Farmer Account
+Email: farmer@example.com
+Password: farmer123
+Role: Farmer
+
+### Worker Account
+Email: worker@example.com
+Password: worker123
+Role: Worker
+
+### Admin Account
+Email: admin@agrijobs.com
+Password: admin123
+Role: Administrator
+
+## STEP 8: TESTING EACH FEATURE
+
+### Test User Registration
+1. Go to Register page
+2. Create new account (choose Farmer or Worker)
+3. Verify email is unique
+4. Check password validation
+
+### Test Login
+1. Go to Login page
+2. Enter credentials
+3. Verify role-based dashboard appears
+
+### Test Job Posts (As Farmer)
+1. Login as farmer
+2. Go to Post Job
+3. Fill all fields
+4. Submit job
+5. Verify job appears in Jobs listing
+
+### Test Job Search (As Worker)
+1. Go to Jobs page
+2. Test search functionality
+3. Filter by category, location, type
+4. Verify results update
+
+### Test Job Application (As Worker)
+1. View a job detail
+2. Click "Apply Now"
+3. Write cover letter
+4. Optionally upload resume
+5. Submit application
+
+### Test Admin Panel
+1. Login as admin
+2. Go to /admin/dashboard.php
+3. Test each management section
+4. Try user activation/deactivation
+5. Try updating application status
+
+## STEP 9: TROUBLESHOOTING
+
+### Error: "Connection failed"
+- Verify MySQL is running
+- Check credentials in db_connection.php
+- Check database is created with correct name
+
+### Error: "Page not found"
+- Verify all files are in correct directories
+- Check file names match exactly
+- Clear browser cache
+
+### Error: "Unable to upload file"
+- Check uploads/ folder permissions
+- Verify folder exists
+- Check PHP upload size limit in php.ini
+
+### Session issues
+- Clear browser cookies
+- Check session save path
+- Verify PHP sessions are enabled
+
+### 404 on admin pages
+- Check admin/ folder exists
+- Verify header.php relative paths
+- Check URL structure
+
+## STEP 10: CONFIGURATION ADJUSTMENTS
+
+### Change Site Colors
+Edit css/style.css:
+```css
+:root {
+    --primary-color: #28a745;  /* Change green to your color */
+}
+```
+
+### Change Timeout
+Edit config.php:
+```php
+define('SESSION_TIMEOUT', 3600); // Change to desired seconds
+```
+
+### Change Upload Size
+Edit config.php:
+```php
+define('MAX_UPLOAD_SIZE', 5242880); // 5MB in bytes
+```
+
+### Change Items Per Page
+Edit config.php:
+```php
+define('ITEMS_PER_PAGE', 10); // Change pagination
+```
+
+## STEP 11: SECURITY SETUP
+
+### For Production (HTTPS)
+1. Install SSL Certificate
+2. Update db_connection.php:
+```php
+session_set_cookie_params(array(
+    'secure' => true,  // Change to true
+    ...
+));
+```
+3. Update .htaccess to redirect HTTP to HTTPS
+
+### Protect Admin Folder
+Create admin/.htaccess:
+```apache
+<FilesMatch "\.(php|php\d+)$">
+    Deny from all
+</FilesMatch>
+```
+
+### Database Backups
+Create backup of database regularly:
+```bash
+mysqldump -u root -p agriculture_jobs > backup.sql
+```
+
+## STEP 12: OPTIONAL ENHANCEMENTS
+
+### Enable Email Notifications
+Uncomment email code in:
+- post_job.php
+- apply_job.php
+- contact.php
+
+### Add Google Analytics
+Add tracking code to includes/header.php
+
+### Add Social Login
+Integrate OAuth providers (Google, Facebook)
+
+### Add Currency Conversion
+Add exchange rate API integration
+
+## STEP 13: MAINTENANCE CHECKLIST
+
+- [ ] Test all user workflows
+- [ ] Verify database backups work
+- [ ] Check error logs regularly
+- [ ] Monitor server performance
+- [ ] Keep PHP updated
+- [ ] Keep MySQL updated
+- [ ] Update security headers
+- [ ] Review user feedback
+- [ ] Test email notifications
+- [ ] Verify HTTPS works
+
+## STEP 14: SUPPORT RESOURCES
+
+### Useful Links
+- PHP Documentation: https://www.php.net/manual/
+- MySQL Documentation: https://dev.mysql.com/doc/
+- Bootstrap Documentation: https://getbootstrap.com/docs/
+- jQuery Documentation: https://jquery.com/
+
+### Common Issues
+Q: Can't login?
+A: Check password hashing - ensure bcrypt is used
+
+Q: Images not showing?
+A: Check image paths are relative to document root
+
+Q: Emails not sending?
+A: Check mail() function in php.ini
+
+Q: Slow performance?
+A: Add database indexes, enable caching
+
+## STEP 15: GOING LIVE
+
+Before deploying to production:
+1. Update database credentials to production
+2. Change admin password
+3. Set secure cookies (HTTPS only)
+4. Disable debug mode
+5. Set proper file permissions
+6. Configure email service
+7. Set up automated backups
+8. Monitor error logs
+9. Test all features again
+10. Set up SSL certificate
+
+## FINAL VERIFICATION
+
+After setup, verify:
+✓ Home page loads correctly
+✓ Users can register
+✓ Users can login
+✓ Jobs can be posted
+✓ Jobs can be searched
+✓ Applications can be submitted
+✓ Admin panel is accessible
+✓ All links work
+✓ Forms validate properly
+✓ Database queries are efficient
+
+## CONTACT & SUPPORT
+
+For issues during setup:
+1. Check the README.md file
+2. Review PHP error logs
+3. Check MySQL error logs
+4. Verify all file permissions
+5. Ensure database is properly initialized
+
+---
+
+Installation completed! Your Agriculture Hiring Website is ready to use.
+Current Date: April 2026
+Version: 1.0.0
