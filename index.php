@@ -1,3 +1,19 @@
+<html>
+    <hade>
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z7QPJKYXPH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z7QPJKYXPH');
+</script>
+    </hade>
+    <body>
+        
+    </body>
+</html>
 <?php
 include 'includes/db_connection.php';
 $page_title = 'Home';
